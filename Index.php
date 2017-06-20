@@ -3,7 +3,7 @@
 echo <<<_SHIT
 <html>
    <head>
-       <title>Наша первая форма</title>   
+       <title>Наша первая форма для теста</title>   
    </head>
    <body>
         <form method="post" action="Controller/UserController.php">
