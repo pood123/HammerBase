@@ -11,21 +11,64 @@
     <schema id="5" parent="1" name="performance_schema"/>
     <schema id="6" parent="1" name="phpmyadmin"/>
     <schema id="7" parent="1" name="test"/>
-    <table id="8" parent="2" name="users"/>
-    <column id="9" parent="8" name="UserNAME">
-      <Position>1</Position>
-      <DataType>varchar(100)|0</DataType>
+    <table id="8" parent="2" name="images"/>
+    <table id="9" parent="2" name="users"/>
+    <column id="10" parent="8" name="ImageNAME">
+      <Position>2</Position>
+      <DataType>varchar(300)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="10" parent="8" name="UserPASS">
+    <column id="11" parent="8" name="ImageVIEWS">
+      <Position>3</Position>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <column id="12" parent="8" name="ImageId">
+      <Position>1</Position>
+      <DataType>bigint(20) unsigned|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <index id="13" parent="8" name="id">
+      <ColNames>ImageId</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="14" parent="8" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>ImageId</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <key id="15" parent="8" name="id">
+      <ColNames>ImageId</ColNames>
+      <UnderlyingIndexName>id</UnderlyingIndexName>
+    </key>
+    <column id="16" parent="9" name="UserNAME">
       <Position>2</Position>
       <DataType>varchar(100)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <key id="11" parent="8" name="PRIMARY">
+    <column id="17" parent="9" name="UserPASS">
+      <Position>3</Position>
+      <DataType>varchar(100)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="18" parent="9" name="UserId">
+      <Position>1</Position>
+      <DataType>bigint(20) unsigned|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <index id="19" parent="9" name="UserId">
+      <ColNames>UserId</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="20" parent="9" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
-      <ColNames>UserNAME</ColNames>
+      <ColNames>UserId</ColNames>
       <Primary>1</Primary>
+    </key>
+    <key id="21" parent="9" name="UserId">
+      <ColNames>UserId</ColNames>
+      <UnderlyingIndexName>UserId</UnderlyingIndexName>
     </key>
   </database-model>
 </dataSource>
