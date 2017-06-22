@@ -15,4 +15,6 @@ function addFoto() {
     $image->addImage();
 }
 
+function removeFoto() {}
+
 
