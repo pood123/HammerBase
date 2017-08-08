@@ -1,11 +1,20 @@
 <?php
-namespace Model;
-require __DIR__. '/../Func/MySql.php';
+require_once __DIR__.'/../Func/MySql.php';
 
 class ImageModel
 {
+    private $id;
     private $name;
     private $views;
+
+    public function getId()
+    {
+        return $this->id;
+    }
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
 
     public function getName()
     {
@@ -27,10 +36,16 @@ class ImageModel
         $this->views = $views;
     }
 
-    function addImage() {
+    function AddImage() {
         $name = $this->getName();
         $pass = $this->getViews();
         $query = "INSERT INTO images (ImageNAME, ImageVIEWS) VALUES ('$name', '$pass')";
-        \Functional\execQuery($query);
+        execQuery($query);
+    }
+
+    public static function GetAllImages () {
+        $query = "SELECT * FROM images";
+        $imageList = execQuery($query);
+        return $imageList;
     }
 }

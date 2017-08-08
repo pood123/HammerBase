@@ -1,8 +1,12 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: timko
- * Date: 22.06.2017
- * Time: 15:17
- */
-
+include_once 'FormHeader.php' ?>
+<html>
+    <body>
+        <table>
+            <tr><th>Название Фотографии</th><th>Фотография</th></tr>
+            <?php foreach ($data as $image):?>
+                   <tr><td><?php echo $image->ImageNAME?></td><td><img src="./Images/<?php echo $image->ImageNAME?>"></td></tr>
+            <?php endforeach;?>
+        </table>
+    </body>
+</html>

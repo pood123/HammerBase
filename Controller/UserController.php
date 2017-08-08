@@ -1,22 +1,46 @@
 <?php
-namespace Controller;
+session_start();
+require __DIR__ . '/../Model/UserModel.php';
 
-$controller = new UserController();
-$controller->addUser();
-echo <<<HTML
-<a href="../Index.php">Вернуться назад и добавить еще</a>
-HTML;
+class UserController {
 
+    public static function actionGetUser()
+    {
+        $user = new UserModel();
+        $user->setName($_POST['user_name']);
+        return $user->getUser();
+    }
 
-class UserController
-{
-    function addUser(){
-        $name = $_POST['user_name'];
-        $pass = $_POST['user_password'];
-        $conn = new \mysqli('localhost','root','321456', 'HammerBase');
-        $query = "INSERT INTO Users (UserNAME, UserPASS) VALUES ('$name', '$pass')";
-        if($conn->query($query)) echo "Запись добавлена! <br>";
-        else echo "shit <br>";
-        $conn->close();
+    public static function actionAddUser()
+    {
+        $user = new UserModel();
+        $user->setName($_POST['user_name']);
+        $user->setPassword($_POST['user_password']);
+        $user->addUser();
+        header('Location: ../index.php');
+    }
+
+    public static function actionUserLogout()
+    {
+        unset($_SESSION['userID']);
+        unset($_SESSION['userNAME']);
+        unset($_SESSION['userPASSWORD']);
+        session_destroy();
+        header('Location: ../index.php');
+    }
+
+    public static function actionUserLogin() {
+        $user = self::actionGetUser();
+        if ($user) {
+            echo "fasfafafafafafafafafa";
+            $_SESSION['user'] = $user->getName();
+            setcookie('user', $user->getUserId(), time() + 3600);
+            $view = new ViewModel();
+            $view->actionRenderView();
+        }
+        else {
+            echo "Пользователь не существует. Зарегистрируйтесь";
+            include "../Views/FormRegister.php";
+        }
     }
 }
